@@ -50,7 +50,7 @@
         <version>1.5.1.RELEASE</version>
     </parent>
 
-    <!-- 配置maven地址 -->
+    <!-- 配置maven地址
     <distributionManagement>
         <repository>
             <id>releases</id>
@@ -65,29 +65,30 @@
     </distributionManagement>
 
     <repositories>
-      <repository>
-        <id>nexus</id>
-        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        <releases>
-          <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-      </repository>
+        <repository>
+            <id>nexus</id>
+            <url>http://182.92.218.12:8077/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
     <pluginRepositories>
-      <pluginRepository>
-        <id>nexus</id>
-        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        <releases>
-          <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-      </pluginRepository>
+        <pluginRepository>
+            <id>nexus</id>
+            <url>http://182.92.218.12:8077/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
     </pluginRepositories>
+     -->
 
     <properties>
         <!-- 私有 Docker Registry -->
@@ -151,6 +152,7 @@
         <springfox.swagger2.version>2.6.1</springfox.swagger2.version>
         <lombok.version>1.16.16</lombok.version>
         <apollo.version>0.8.0</apollo.version>
+        <spring.version>4.3.6.RELEASE</spring.version>
     </properties>
 
     <dependencyManagement>
@@ -464,11 +466,33 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>com.ctrip.framework.apollo</groupId>-->
-                <!--<artifactId>apollo-client</artifactId>-->
-                <!--<version>${apollo.version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            
+            <!-- Spring -->
+            <dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -493,14 +517,17 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
 
+            <!-- 
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
             </plugin>
+             -->
         </plugins>
     </build>
 </project>
